@@ -38,9 +38,6 @@
     <ApplicationIcon>Resources\Gakuseisean-Aire-Download-Folder.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FileWatcherEngine">
-      <HintPath>C:\Users\msiva\OneDrive\Desktop\FileWatcher_2\FileWatcherEngine.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -72,6 +69,7 @@
     </Compile>
     <Compile Include="Converters\FileSizeToStringConverter.cs" />
     <Compile Include="Converters\IconToImageConverter.cs" />
+    <Compile Include="Core\AdminTools.cs" />
     <Compile Include="Core\Extension.cs" />
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\ImageDataModel.cs" />

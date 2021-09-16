@@ -1,5 +1,4 @@
-﻿using FileWatcherEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -27,7 +26,6 @@ namespace TestFileWatcher.ViewModels
     public class MainViewModel : BindableObject
     {
         private string _folderPath;
-        private readonly FileWatcherMan _fileWatcherMan;
         private DataModel _selectedItem;
         
         public DataModel SelectedItem
@@ -69,9 +67,7 @@ namespace TestFileWatcher.ViewModels
 
         private void ExecuteRunAsAdminCommand(object obj)
         {
-            var appPath = Assembly.GetExecutingAssembly().Location;
-            _fileWatcherMan.RunWithAdmin(appPath);
-            Application.Current.Shutdown();
+            AdminTools.RestartAsAdmin();
         }
 
         private void ExecuteListSelectedCommand(object obj)
@@ -182,7 +178,7 @@ namespace TestFileWatcher.ViewModels
 
         private bool IsRunningAsAdmin()
         {
-            return _fileWatcherMan.HasAdminPrivileges();
+            return AdminTools.IsRunningAdministrator();
         }
 
         #endregion
@@ -193,8 +189,6 @@ namespace TestFileWatcher.ViewModels
             RunAsAdminCommand = new RelayCommand(ExecuteRunAsAdminCommand, CanExecuteRunAsAdminCommand);
             ListSelectedCommand = new RelayCommand(ExecuteListSelectedCommand);
             FileList = new ObservableCollection<DataModel>();
-
-            _fileWatcherMan = new FileWatcherMan();
         }
     }
 }
